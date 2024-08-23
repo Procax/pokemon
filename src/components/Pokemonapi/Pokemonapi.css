@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 45px; /* Space between the cards */
+}
+
+.pokemon-search {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center
+}
+
+.center {
+    padding-top: 45px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
