@@ -10,6 +10,12 @@ export default function Pokemonapi() {
   const [data, setData] = useState(null);
   const [visibleCount, setVisibleCount] = useState(8);
   const [search, setSearch] = useState("");
+  const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState('');
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+
+
+
 
 
 
@@ -17,6 +23,13 @@ export default function Pokemonapi() {
  {
   const fetchapi =  async () => {
     try {
+
+      const typeResponse = await fetch('https://pokeapi.co/api/v2/type');
+      const typeData = await typeResponse.json();
+      setTypes(typeData.results);
+
+
+
       const response = await fetch (pokiapi)
       const data = await response.json()
 
@@ -61,21 +74,53 @@ const detailedResponses = await Promise.all(detailedPokemonData);
 const showMoreCards = () => {
   setVisibleCount((prevCount) => prevCount + 12);
 };
-const searchData = data?.filter((curPokemon) =>
-  curPokemon.name.toLowerCase().includes(search.toLowerCase())
-);
+
+useEffect (() => {
+  const searchData = data?.filter((curPokemon) => {
+    const matchesName = curPokemon?.name.toLowerCase().includes(search.toLowerCase())
+  const matchesType = selectedType
+  ? curPokemon.types.some(typeInfo => typeInfo.type.name === selectedType)
+  : true;
+  return matchesName && matchesType;
+  },
+  
+  );
+  setFilteredPokemon(searchData)
+
+  
+},[search, selectedType, data])
+
 
   return (
     <div>
 
 <div className="pokemon-search">
-          <input
+  <div>
+
+  <input className='search'
             type="text"
-            placeholder="search Pokemon"
+            placeholder="Search Pokemon"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+
+  </div>
+
+                  <div>
+        <select onChange={(e) => setSelectedType(e.target.value)}>
+                    <option value="">Types</option>
+                    {types?.map(type => (
+                      
+                        <option key={type.name} value={type.name} >
+                            {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                        </option>
+                    ))}
+                    {console.log(types)}
+                </select>
         </div>
+        </div>
+
+
 
     <div className="container">
 
@@ -101,8 +146,8 @@ const searchData = data?.filter((curPokemon) =>
     
 
             {/* {pokemon.map((curPokemon) => { */}
-            {searchData?.slice(0, visibleCount)?.map((pokemon) => {
-              console.log(pokemon.types)
+            {filteredPokemon?.slice(0, visibleCount)?.map((pokemon) => {
+              // console.log(pokemon.types)
               return (
                 <Pokemoncard pokemon ={pokemon} />
               );

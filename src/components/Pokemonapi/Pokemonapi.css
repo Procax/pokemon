@@ -7,7 +7,13 @@
 .pokemon-search {
     padding-top: 20px;
     display: flex;
-    justify-content: center
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 200px;
+    text-align: center;
 }
 
 .center {
@@ -15,4 +21,9 @@
     padding-bottom: 20px;
     display: flex;
     justify-content: center;
+}
+
+select {
+    width: 200px;
+    text-align: center;
 }
