@@ -2,11 +2,12 @@ import React, { useEffect, useState} from 'react'
 import { pokiapi } from '../../utils/constant'
 import { Pokemoncard } from '../Card/Pokemoncard';
 import './Pokemonapi.css'
+import withAuthorization from '../Auth/withAuthorization';
 
 
 
 
-export default function Pokemonapi() {
+ function Pokemonapi() {
   const [data, setData] = useState(null);
   const [visibleCount, setVisibleCount] = useState(8);
   const [search, setSearch] = useState("");
@@ -36,7 +37,7 @@ export default function Pokemonapi() {
       // console.log(response)
 
 
-      const detailedPokemonData = data.results.map(async (curPokemon) => {
+      const detailedPokemonData = data?.results?.map(async (curPokemon) => {
         const res = await fetch(curPokemon.url);
         const data = await res.json();
         return data;
@@ -92,7 +93,7 @@ useEffect (() => {
 
 
   return (
-    <div>
+    <div className='pokemon'>
 
 <div className="pokemon-search">
   <div>
@@ -122,7 +123,7 @@ useEffect (() => {
 
 
 
-    <div className="container">
+    <div className="poki-container">
 
 {/* 
  <div>
@@ -166,3 +167,5 @@ useEffect (() => {
     </div>
   );
 }
+
+export default withAuthorization(Pokemonapi)

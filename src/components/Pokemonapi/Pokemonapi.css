@@ -1,14 +1,33 @@
-.container {
+.pokemon {
+    padding-top: 20px;
+}
+
+.poki-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 45px; /* Space between the cards */
+    justify-content: center;
+    justify-items: center;
+        grid-template-columns: repeat(4, 1fr);
+
+
+@media (max-width: 1200px) {
+    display: grid;
+        grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 890px) {
+    display: grid;
+        grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 600px) {
+    display: grid;
+        grid-template-columns: repeat(1, 1fr);
+}
 }
 
 .pokemon-search {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-content: center;
 }
 
 input {

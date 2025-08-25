@@ -4,6 +4,10 @@
     transition: 0.3s;
   height: 680px;
   width: 280px;
+
+  @media (max-width: 600px) {
+  width: 300px;
+}
 }
 
 h2 {
