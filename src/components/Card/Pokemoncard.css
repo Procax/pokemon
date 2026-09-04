@@ -1,14 +1,14 @@
 .card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   width: 100%;
   max-width: 280px;
-  padding: 35px 25px;
+  padding: 20px 20px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +16,7 @@
   margin: 10px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Shine effect on hover */
@@ -26,7 +27,12 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transform: skewX(-25deg);
   transition: all 0.6s ease;
   z-index: 1;
@@ -37,104 +43,194 @@
 }
 
 .card:hover {
-  transform: translateY(-15px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
   background: rgba(255, 255, 255, 1);
 }
 
-.card-img-container {
-  background: radial-gradient(circle, #f8f9fa 0%, #e9ecef 100%);
+/* Card Quick Actions Bar */
+.card-quick-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+  z-index: 2;
+}
+
+.card-id-tag {
+  font-size: 13px;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.card-btn {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  width: 170px;
-  height: 170px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-team-btn.active {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.card-fav-btn.active {
+  background: #ffe4e6;
+  border-color: #f43f5e;
+}
+
+/* Pokémon Image Container */
+.card-img-container {
+  background: radial-gradient(circle, #f8fafc 0%, #e9ecef 100%);
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
   transition: all 0.4s ease;
-  box-shadow: inset 0 0 25px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.04), 0 10px 20px rgba(0, 0, 0, 0.04);
   position: relative;
   z-index: 2;
 }
 
 .card:hover .card-img-container {
   background: radial-gradient(circle, #ffffff 0%, #f1f3f5 100%);
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.02), 0 15px 30px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.02), 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
-  width: 150px;
-  height: 150px;
+  width: 135px;
+  height: 135px;
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.18));
 }
 
 .card:hover img {
-  transform: scale(1.25) rotate(8deg) translateY(-10px);
+  transform: scale(1.2) rotate(6deg) translateY(-8px);
 }
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
 h2 {
   text-align: center;
   text-transform: capitalize;
-  font-size: 26px;
-  color: #2c3e50;
-  margin: 0 0 25px 0;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  letter-spacing: 1px;
+  font-size: 24px;
+  color: #1e293b;
+  margin: 0 0 10px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
   font-weight: 800;
   z-index: 2;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.card-power-strip {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  z-index: 2;
+}
+
+.card-stat-chip {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+
+.hp-chip {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.bst-chip {
+  background: rgba(15, 23, 42, 0.08);
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.15);
 }
 
 .types-container {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
   z-index: 2;
 }
 
 .type-badge {
-  padding: 8px 18px;
+  padding: 6px 16px;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: capitalize;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: white;
   background-color: #777;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease;
 }
 
 .card:hover .type-badge {
   transform: translateY(-2px);
 }
 
+.card-inspect-hint {
+  margin-top: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  opacity: 0.65;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.card:hover .card-inspect-hint {
+  opacity: 1;
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
 /* Pokemon Type Colors with glowing shadows */
-.type-badge.grass { background-color: #78C850; box-shadow: 0 4px 12px rgba(120, 200, 80, 0.5); }
-.type-badge.fire { background-color: #F08030; box-shadow: 0 4px 12px rgba(240, 128, 48, 0.5); }
-.type-badge.water { background-color: #6890F0; box-shadow: 0 4px 12px rgba(104, 144, 240, 0.5); }
-.type-badge.bug { background-color: #A8B820; box-shadow: 0 4px 12px rgba(168, 184, 32, 0.5); }
-.type-badge.normal { background-color: #A8A878; box-shadow: 0 4px 12px rgba(168, 168, 120, 0.5); }
-.type-badge.poison { background-color: #A040A0; box-shadow: 0 4px 12px rgba(160, 64, 160, 0.5); }
-.type-badge.electric { background-color: #F8D030; box-shadow: 0 4px 12px rgba(248, 208, 48, 0.5); }
-.type-badge.ground { background-color: #E0C068; box-shadow: 0 4px 12px rgba(224, 192, 104, 0.5); }
-.type-badge.fairy { background-color: #EE99AC; box-shadow: 0 4px 12px rgba(238, 153, 172, 0.5); }
-.type-badge.fighting { background-color: #C03028; box-shadow: 0 4px 12px rgba(192, 48, 40, 0.5); }
-.type-badge.psychic { background-color: #F85888; box-shadow: 0 4px 12px rgba(248, 88, 136, 0.5); }
-.type-badge.rock { background-color: #B8A038; box-shadow: 0 4px 12px rgba(184, 160, 56, 0.5); }
-.type-badge.ghost { background-color: #705898; box-shadow: 0 4px 12px rgba(112, 88, 152, 0.5); }
-.type-badge.ice { background-color: #98D8D8; box-shadow: 0 4px 12px rgba(152, 216, 216, 0.5); }
-.type-badge.dragon { background-color: #7038F8; box-shadow: 0 4px 12px rgba(112, 56, 248, 0.5); }
-.type-badge.dark { background-color: #705848; box-shadow: 0 4px 12px rgba(112, 88, 72, 0.5); }
-.type-badge.steel { background-color: #B8B8D0; box-shadow: 0 4px 12px rgba(184, 184, 208, 0.5); }
-.type-badge.flying { background-color: #A890F0; box-shadow: 0 4px 12px rgba(168, 144, 240, 0.5); }
+.type-badge.grass { background-color: #78C850; box-shadow: 0 4px 12px rgba(120, 200, 80, 0.4); }
+.type-badge.fire { background-color: #F08030; box-shadow: 0 4px 12px rgba(240, 128, 48, 0.4); }
+.type-badge.water { background-color: #6890F0; box-shadow: 0 4px 12px rgba(104, 144, 240, 0.4); }
+.type-badge.bug { background-color: #A8B820; box-shadow: 0 4px 12px rgba(168, 184, 32, 0.4); }
+.type-badge.normal { background-color: #A8A878; box-shadow: 0 4px 12px rgba(168, 168, 120, 0.4); }
+.type-badge.poison { background-color: #A040A0; box-shadow: 0 4px 12px rgba(160, 64, 160, 0.4); }
+.type-badge.electric { background-color: #F8D030; box-shadow: 0 4px 12px rgba(248, 208, 48, 0.4); color: #333; }
+.type-badge.ground { background-color: #E0C068; box-shadow: 0 4px 12px rgba(224, 192, 104, 0.4); }
+.type-badge.fairy { background-color: #EE99AC; box-shadow: 0 4px 12px rgba(238, 153, 172, 0.4); }
+.type-badge.fighting { background-color: #C03028; box-shadow: 0 4px 12px rgba(192, 48, 40, 0.4); }
+.type-badge.psychic { background-color: #F85888; box-shadow: 0 4px 12px rgba(248, 88, 136, 0.4); }
+.type-badge.rock { background-color: #B8A038; box-shadow: 0 4px 12px rgba(184, 160, 56, 0.4); }
+.type-badge.ghost { background-color: #705898; box-shadow: 0 4px 12px rgba(112, 88, 152, 0.4); }
+.type-badge.ice { background-color: #98D8D8; box-shadow: 0 4px 12px rgba(152, 216, 216, 0.4); color: #333; }
+.type-badge.dragon { background-color: #7038F8; box-shadow: 0 4px 12px rgba(112, 56, 248, 0.4); }
+.type-badge.dark { background-color: #705848; box-shadow: 0 4px 12px rgba(112, 88, 72, 0.4); }
+.type-badge.steel { background-color: #B8B8D0; box-shadow: 0 4px 12px rgba(184, 184, 208, 0.4); }
+.type-badge.flying { background-color: #A890F0; box-shadow: 0 4px 12px rgba(168, 144, 240, 0.4); }

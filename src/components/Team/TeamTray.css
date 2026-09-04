@@ -1,0 +1,267 @@
+.team-tray-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1000px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-tray-container.collapsed {
+  transform: translateX(-50%) translateY(calc(100% - 50px));
+}
+
+.team-tray-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tray-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tray-icon {
+  font-size: 20px;
+}
+
+.tray-title {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.team-count-badge {
+  background: #f59e0b;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.tray-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tray-battle-cta {
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ef4444, #f59e0b);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tray-battle-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.6);
+}
+
+.synergy-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 650px) {
+  .synergy-tags {
+    display: none;
+  }
+}
+
+.synergy-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.mini-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+
+.mini-type-badge.grass { background-color: #78C850; }
+.mini-type-badge.fire { background-color: #F08030; }
+.mini-type-badge.water { background-color: #6890F0; }
+.mini-type-badge.bug { background-color: #A8B820; }
+.mini-type-badge.normal { background-color: #A8A878; }
+.mini-type-badge.poison { background-color: #A040A0; }
+.mini-type-badge.electric { background-color: #F8D030; color: #333; }
+.mini-type-badge.ground { background-color: #E0C068; }
+.mini-type-badge.fairy { background-color: #EE99AC; }
+.mini-type-badge.fighting { background-color: #C03028; }
+.mini-type-badge.psychic { background-color: #F85888; }
+.mini-type-badge.rock { background-color: #B8A038; }
+.mini-type-badge.ghost { background-color: #705898; }
+.mini-type-badge.ice { background-color: #98D8D8; color: #333; }
+.mini-type-badge.dragon { background-color: #7038F8; }
+.mini-type-badge.dark { background-color: #705848; }
+.mini-type-badge.steel { background-color: #B8B8D0; }
+.mini-type-badge.flying { background-color: #A890F0; }
+
+.more-types {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.tray-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Slots Grid */
+.team-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  padding: 16px 24px 20px;
+}
+
+@media (max-width: 700px) {
+  .team-slots-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.team-slot {
+  height: 95px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.team-slot.filled {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.team-slot.filled:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  border-color: #f59e0b;
+}
+
+.team-slot.empty {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.slot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slot-img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.slot-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-top: 4px;
+  color: #f1f5f9;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slot-remove-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.85);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.team-slot.filled:hover .slot-remove-btn {
+  opacity: 1;
+}
+
+.empty-slot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.4;
+}
+
+.empty-pokeball {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #94a3b8;
+  border-radius: 50%;
+  position: relative;
+}
+
+.empty-pokeball::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #94a3b8;
+  transform: translateY(-50%);
+}
+
+.empty-label {
+  font-size: 10px;
+  margin-top: 6px;
+  color: #94a3b8;
+}
